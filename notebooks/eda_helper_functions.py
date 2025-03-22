@@ -65,8 +65,8 @@ def correlation_heatmap(data,
   cm = data.corr(method=method, numeric_only=True)
 
   mask = np.zeros_like(cm, dtype=bool)
-  mask[np.triu_indices_from(mask)] = True
-
+  mask[np.triu_indices_from(mask)] = True                              #triu_indices_from gives indices of upper trinagular matrix
+                                                                       #true value given to upper trainguler indices
   fig, ax = plt.subplots(figsize=figsize)
   hm = sns.heatmap(
       cm,
@@ -78,7 +78,7 @@ def correlation_heatmap(data,
       fmt=".2f",
       linewidths=1.5,
       square=True,
-      mask=mask,
+      mask=mask,                                                       #hides the upper triangle values which are true
       ax=ax
   )
   rotate_xlabels(ax)
